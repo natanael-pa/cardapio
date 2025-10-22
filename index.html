@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Gastrobar</title>
+    <style>
+        /* Variáveis de Cores */
+        :root {
+            --cor-brasa: #8b0000; /* Vermelho escuro, quase vinho */
+            --cor-fundo: #f0f0f0;
+            --cor-carne: #4a2828; /* Marrom escuro */
+            --cor-preco: #008000; /* Verde para destaque financeiro */
+            --cor-destaque: #ffd700; /* Amarelo/Dourado */
+        }
+
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif; /* Use 'Roboto', 'Bebas Neue' ou outra se usar link acima */
+            background-color: var(--cor-fundo);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 5px solid var(--cor-carne);
+            border-radius: 8px;
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            border-bottom: 5px double var(--cor-brasa);
+        }
+
+        header h1 {
+            color: var(--cor-brasa);
+            margin: 0;
+            font-size: 3em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        header h2 {
+            color: var(--cor-carne);
+            margin: 5px 0 0;
+            font-size: 1.4em;
+        }
+
+        /* Seção de Menu (Grid em telas maiores) */
+        .menu {
+            display: grid;
+            grid-template-columns: 1fr; /* Padrão 1 coluna */
+            gap: 20px; /* Espaço entre os itens */
+        }
+
+        /* Item do Cardápio */
+        .menu-item {
+            display: flex;
+            align-items: center;
+            background-color: #fcfcfc;
+            border: 1px solid #ddd;
+            border-left: 5px solid var(--cor-brasa);
+            padding: 15px;
+            border-radius: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-image {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%; /* Imagem redonda para destacar */
+            margin-right: 15px;
+            border: 3px solid var(--cor-destaque);
+            flex-shrink: 0;
+        }
+
+        .item-details {
+            flex-grow: 1;
+        }
+
+        .item-details h3 {
+            color: var(--cor-carne);
+            margin: 0 0 5px;
+            font-size: 1.4em;
+            text-transform: uppercase;
+        }
+
+        .item-details p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .item-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fff;
+            background-color: var(--cor-brasa);
+            padding: 5px 12px;
+            border-radius: 4px;
+            margin-left: 20px;
+            flex-shrink: 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Destaque para Combos/Promoções */
+        .combo-title h3 {
+             color: var(--cor-destaque);
+             background-color: var(--cor-brasa);
+             padding: 10px;
+             text-align: center;
+             border-radius: 5px;
+             margin: 20px 0 10px 0;
+             font-size: 1.6em;
+        }
+
+        /* Seção de Informações */
+        .info-section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 3px solid var(--cor-brasa);
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--cor-carne);
+        }
+
+        .info-section strong {
+            color: var(--cor-brasa);
+        }
+
+        /* Responsividade (Telas médias e grandes) */
+        @media (min-width: 768px) {
+            .menu {
+                grid-template-columns: 1fr 1fr; /* 2 colunas em tablets e desktops */
+            }
+            /* Garantindo que o item ocupe a coluna inteira para a divisão de combos */
+            .combo-title {
+                grid-column: 1 / -1; 
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        /* Responsividade (Telas menores - Celulares) */
+        @media (max-width: 550px) {
+            .container {
+                margin: 20px 10px;
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .menu-item {
+                flex-direction: column; /* Empilha o conteúdo */
+                text-align: center;
+            }
+
+            .item-image {
+                margin: 0 0 10px 0;
+            }
+
+            .item-details {
+                margin-bottom: 10px;
+            }
+
+            .item-details h3 {
+                font-size: 1.2em;
+            }
+
+            .item-price {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>Cardápio Gastrobar</h1>
+            <h2>Restaurante das 09:00 às 17:00</h2>
+        </header>
+
+        <section class="menu">
+
+            <div class="menu-item">
+                <img src="https://www.ajinomotofoodservice.com.br/wp/content/uploads/receitas/bife-a-cavalo-1920x1080-20-05-2021-ttyat.jpg" alt="Bife a Cavalo" class="item-image">
+                <div class="item-details">
+                    <h3>BIFE A CAVALO</h3>
+                    <p>Acompanha arroz, feijão e salada.</p>
+                </div>
+                <div class="item-price">R$30,00</div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://s3-sa-east-1.amazonaws.com/deliveryon-uploads/products/auauecia/8_6509e19abde75.png" alt="Bife Acebolado" class="item-image">
+                <div class="item-details">
+                    <h3>BIFE ACEBOLADO</h3>
+                    <p>Acompanha arroz, feijão e salada.</p>
+                </div>
+                <div class="item-price">R$30,00</div>
+            </div>
+
+            
+            <div class="combo-title">
+                <h3>PRATOS ESPECIAIS</h3>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwvqAicmlGY8TnXZtMMLeqCFEiCj3tX2n9Ag&s" alt="Maniçoba" class="item-image">
+                <div class="item-details">
+                    <h3>MANIÇOBA</h3>
+                    <p>Acompanha arroz, feijão e salada.</p>
+                </div>
+                <div class="item-price">R$30,00</div>
+            </div>
+
+
+        </section>
+
+        <footer class="info-section">
+            <p><strong>DELIVERY E NO ESPAÇO FÍSICO</strong></p>
+            <p>AVENIDA JOSÉ BONIFÁCIO Nº: 1980</p>
+            <p>Contato (WhatsApp e Delivery): <strong>(91) 7400-1524</strong></p>
+            <p style="margin-top: 15px;">Obrigado PELA PREFERÊNCIA!</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
