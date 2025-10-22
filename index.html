@@ -6,18 +6,17 @@
     <title>Cardápio Gastrobar - Dark Mode Otimizado</title>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
-        /* Variáveis de Cores */
+        /* Variáveis de Cores (Dark Mode) */
         :root {
-            --cor-brasa: #ff4500; /* Vermelho/Laranja mais vivo para o Dark Mode */
-            --cor-fundo-escuro: #121212; /* Fundo bem escuro */
-            --cor-container: #1e1e1e; /* Fundo do container ligeiramente mais claro */
-            --cor-texto: #f5f5f5; /* Texto claro */
-            --cor-carne: #a52a2a; /* Marrom avermelhado escuro para detalhes */
-            --cor-destaque: #ffd700; /* Amarelo/Dourado (Mantido) */
-            --cor-borda-item: #333; /* Borda sutil */
+            --cor-brasa: #ff6600; /* Vermelho/Laranja mais vibrante */
+            --cor-fundo-escuro: #121212; 
+            --cor-container: #1e1e1e;
+            --cor-texto: #f5f5f5; 
+            --cor-destaque: #ffd700; /* Amarelo/Dourado */
+            --cor-borda-item: #333; 
         }
 
-        /* Estilos básicos - Dark Mode */
+        /* Estilos básicos */
         body {
             font-family: Arial, sans-serif;
             background-color: var(--cor-fundo-escuro);
@@ -38,7 +37,7 @@
             border-radius: 8px;
         }
 
-        /* Botão de Download (Novo Estilo) */
+        /* Botão de Download */
         .download-btn {
             display: block;
             width: 250px;
@@ -54,6 +53,7 @@
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
             transition: background-color 0.2s, transform 0.2s;
+            text-transform: uppercase;
         }
 
         .download-btn:hover {
@@ -91,7 +91,7 @@
             font-size: 1.2em;
         }
         
-        /* Placeholder da Logo */
+        /* Placeholder da Logo (Corrigido para sintaxe HTML/CSS correta) */
         .logo-placeholder {
             width: 100px;
             height: 100px;
@@ -100,7 +100,8 @@
             margin-left: 20px;
             flex-shrink: 0;
             background-color: #333;
-            background-image: url('https://via.placeholder.com/100x100?text=LOGO'); 
+            /* Usa a imagem local (./imagens/logo.png) com fallback para placeholder online */
+            background-image: url('./imagens/logo.png'), url('https://via.placeholder.com/100x100?text=LOGO'); 
             background-size: cover;
             background-position: center;
         }
@@ -155,15 +156,19 @@
         .item-price {
             font-size: 1.5em;
             font-weight: bold;
-            color: var(--cor-texto);
             background-color: var(--cor-brasa);
+            color: #000; /* Melhor contraste para o preço no Dark Mode */
             padding: 5px 12px;
             border-radius: 4px;
             margin-left: 20px;
             flex-shrink: 0;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            text-shadow: none; 
         }
         
+        .combo-title {
+            grid-column: 1 / -1; 
+        }
+
         .combo-title h3 {
             color: var(--cor-destaque);
             background-color: var(--cor-brasa);
@@ -172,10 +177,11 @@
             border-radius: 5px;
             margin: 20px 0 10px 0;
             font-size: 1.6em;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            color: #000; /* Texto do título mais escuro para destaque */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
-        /* Seção de Informações (Rodapé) - Fonte maior e mais visível */
+        /* Seção de Informações (Rodapé) */
         .info-section {
             margin-top: 40px;
             padding-top: 20px;
@@ -200,11 +206,6 @@
         @media (min-width: 768px) {
             .menu {
                 grid-template-columns: 1fr 1fr;
-            }
-            .combo-title {
-                grid-column: 1 / -1; 
-                margin: 0;
-                padding: 0;
             }
         }
 
@@ -243,10 +244,10 @@
         }
 
 
-        /* OTIMIZAÇÃO PARA IMPRESSÃO (PDF) */
+        /* OTIMIZAÇÃO PARA IMPRESSÃO (PDF) - Modo Claro */
         @media print {
             .download-btn {
-                display: none; /* Oculta o botão de download na impressão */
+                display: none; 
             }
             body {
                 background-color: #ffffff !important;
@@ -263,28 +264,41 @@
             }
             
             header h1, .item-details h3, .info-section strong {
-                color: #555 !important;
+                color: #333 !important; 
                 text-shadow: none !important;
+            }
+            header {
+                border-bottom: 3px double #333;
+            }
+            .logo-placeholder {
+                border-color: #333;
             }
 
             .menu-item {
                 border: 1px solid #ccc;
-                border-left: 5px solid #000;
+                border-left: 5px solid #333; 
                 background-color: #f9f9f9 !important;
                 box-shadow: none;
                 transition: none;
             }
             .menu-item:hover { transform: none; box-shadow: none; }
+            .item-details p {
+                color: #555 !important;
+            }
 
+            .item-image {
+                border-color: #333;
+            }
+            
             .item-price {
-                background-color: #ddd !important;
+                background-color: #ccc !important;
                 color: #000 !important;
                 text-shadow: none !important;
             }
 
             .combo-title h3 {
-                background-color: #ccc !important;
-                color: #000 !important;
+                background-color: #999 !important;
+                color: #fff !important; 
                 text-shadow: none !important;
                 border: 1px solid #000;
             }
@@ -298,7 +312,7 @@
 </head>
 <body>
 
-    <div class="container" id="menu-container">
+    <div class="container" id="menu-container" tabindex="0"> 
         
         <header>
             <div class="header-titles">
@@ -306,7 +320,7 @@
                 <h2>Restaurante das 09:00 às 17:00</h2>
             </div>
             
-            <div class="logo-placeholder" img src="./imagens/logo.png" ></div>
+            <div class="logo-placeholder" role="img" aria-label="Logo do Gastrobar"></div>
         </header>
 
         <section class="menu">
@@ -315,9 +329,9 @@
             <div class="combo-title">
                 <h3>PRATOS DO DIA</h3>
             </div>
-                        
+                                
             <div class="menu-item">
-                <img src="./imagens/dobradinha.png" alt="Dobradinha" class="item-image">
+                <img src="./imagens/dobradinha.png" alt="Dobradinha, tradicional guisado de bucho com feijão branco." class="item-image">
                 <div class="item-details">
                     <h3>DOBRADINHA</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
@@ -332,7 +346,7 @@
             
 
             <div class="menu-item">
-                <img src="./imagens/bife-a-cavalo.png" alt="Bife a Cavalo" class="item-image">
+                <img src="./imagens/bife-a-cavalo.png" alt="Bife de carne bovina grelhado com ovo frito por cima." class="item-image">
                 <div class="item-details">
                     <h3>BIFE A CAVALO</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
@@ -341,7 +355,7 @@
             </div>
 
             <div class="menu-item">
-                <img src="./imagens/bife-acebolado.png" alt="Bife Acebolado" class="item-image">
+                <img src="./imagens/bife-acebolado.png" alt="Bife de carne grelhado coberto com rodelas de cebola." class="item-image">
                 <div class="item-details">
                     <h3>BIFE ACEBOLADO</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
@@ -350,7 +364,7 @@
             </div>
 
             <div class="menu-item">
-                <img src="./imagens/isca-de-carne-e-calabresa.png" alt="Isca de Carne e Calabresa" class="item-image">
+                <img src="./imagens/isca-de-carne-e-calabresa.png" alt="Iscas de carne bovina e linguiça calabresa fatiada." class="item-image">
                 <div class="item-details">
                     <h3>ISCA DE CARNE E CALABRESA</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
@@ -359,16 +373,16 @@
             </div>
 
             <div class="menu-item">
-                <img src="./imagens/isca-de-figado-acebolado.png" alt="Isca de Figado Acebolado" class="item-image">
+                <img src="./imagens/isca-de-figado-acebolado.png" alt="Iscas de fígado frito com cebola caramelizada." class="item-image">
                 <div class="item-details">
-                    <h3>ISCA DE FIGADO ACEBOLADO</h3>
+                    <h3>ISCA DE FÍGADO ACEBOLADO</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
                 </div>
                 <div class="item-price">R$22,00</div>
             </div>
 
             <div class="menu-item">
-                <img src="./imagens/omelete-de-camarao.png" alt="Omelete de Camarão" class="item-image">
+                <img src="./imagens/omelete-de-camarao.png" alt="Omelete recheado com camarões salteados." class="item-image">
                 <div class="item-details">
                     <h3>OMELETE DE CAMARÃO</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
@@ -377,7 +391,7 @@
             </div>
 
             <div class="menu-item">
-                <img src="./imagens/carne-assada.png" alt="Carne Assada" class="item-image">
+                <img src="./imagens/carne-assada.png" alt="Carne bovina assada em molho." class="item-image">
                 <div class="item-details">
                     <h3>CARNE ASSADA</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
@@ -386,7 +400,7 @@
             </div>
 
             <div class="menu-item">
-                <img src="./imagens/file-de-frango-empanado.png" alt="Filé de Frango Empanado" class="item-image">
+                <img src="./imagens/file-de-frango-empanado.png" alt="Filé de frango frito empanado e crocante." class="item-image">
                 <div class="item-details">
                     <h3>FILÉ DE FRANGO EMPANADO</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
@@ -395,7 +409,7 @@
             </div>
 
             <div class="menu-item">
-                <img src="./imagens/frango-guisado.png" alt="Frango Guisado" class="item-image">
+                <img src="./imagens/frango-guisado.png" alt="Frango cozido em molho de tomate e especiarias." class="item-image">
                 <div class="item-details">
                     <h3>FRANGO GUISADO</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
@@ -404,35 +418,35 @@
             </div>
 
             <div class="menu-item">
-                <img src="./imagens/cozidao-de-carne-com-legumes.png" alt="Cozidão de Carne com Legumes" class="item-image">
+                <img src="./imagens/cozidao-de-carne-com-legumes.png" alt="Cozidão de carne com legumes variados." class="item-image">
                 <div class="item-details">
-                    <h3>COZIDÃO DE CARNE COM LEGUMES</h3>
+                    <h3>COZIDÃO DE CARNE C/ LEGUMES</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
                 </div>
                 <div class="item-price">R$22,00</div>
             </div>
             
             <div class="menu-item">
-                <img src="./imagens/file-de-frango-na-chapa.png" alt="Filé de Frango na Chapa" class="item-image">
+                <img src="./imagens/file-de-frango-na-chapa.png" alt="Filé de frango grelhado na chapa." class="item-image">
                 <div class="item-details">
                     <h3>FILÉ DE FRANGO NA CHAPA</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
                 </div>
                 <div class="item-price">R$22,00</div>
             </div>
-                        
+                                
             <div class="menu-item">
-                <img src="./imagens/lingua-com-batata.png" alt="Lingua com Batata" class="item-image">
+                <img src="./imagens/lingua-com-batata.png" alt="Língua bovina guisada com batatas." class="item-image">
                 <div class="item-details">
-                    <h3>LINGUA COM BATATA</h3>
+                    <h3>LÍNGUA COM BATATA</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
                 </div>
                 <div class="item-price">R$22,00</div>
             </div>
-                        
-                        
+                                
+                                
             <div class="menu-item">
-                <img src="./imagens/file-de-dourada.png" alt="Filé de Dourada" class="item-image">
+                <img src="./imagens/file-de-dourada.png" alt="Filé de peixe dourada frito ou grelhado." class="item-image">
                 <div class="item-details">
                     <h3>FILÉ DE DOURADA</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
@@ -445,7 +459,7 @@
             </div>
             
             <div class="menu-item">
-                <img src="./imagens/manicoba.png" alt="Maniçoba" class="item-image">
+                <img src="./imagens/manicoba.png" alt="Maniçoba, prato típico paraense com folha de mandioca brava." class="item-image">
                 <div class="item-details">
                     <h3>MANIÇOBA</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
@@ -454,7 +468,7 @@
             </div>
             
             <div class="menu-item">
-                <img src="./imagens/pato-no-tucupi.png" alt="Pato no Tucupi" class="item-image">
+                <img src="./imagens/pato-no-tucupi.png" alt="Pato no tucupi, prato paraense com molho amarelo e jambu." class="item-image">
                 <div class="item-details">
                     <h3>PATO NO TUCUPI</h3>
                     <p>Acompanha arroz, feijão e salada.</p>
@@ -475,8 +489,8 @@
 
     </div>
     
-    <button class="download-btn" onclick="capturarEBaixar()">
-        Download ⬇️
+    <button class="download-btn" id="download-button">
+        Download Cardápio ⬇️
     </button>
 
     <script>
@@ -485,15 +499,16 @@
          */
         function capturarEBaixar() {
             const container = document.getElementById('menu-container');
-            const downloadButton = document.querySelector('.download-btn');
+            const downloadButton = document.getElementById('download-button');
 
             // 1. Oculta o botão de download para que ele não apareça na imagem
             downloadButton.style.display = 'none';
 
             // 2. Usa o html2canvas para capturar o elemento
             html2canvas(container, {
-                scale: 2, // Aumenta a escala para melhorar a qualidade da imagem para o Instagram
-                backgroundColor: '#121212', // Garante que o fundo escuro seja renderizado
+                scale: 2, // Aumenta a escala para melhorar a qualidade da imagem
+                backgroundColor: '#121212', // Garante o fundo escuro
+                logging: false // Desabilita logs de console
             }).then(canvas => {
                 // 3. Converte o canvas para uma imagem PNG
                 const image = canvas.toDataURL("image/png");
@@ -504,12 +519,17 @@
                 link.download = 'cardapio-gastrobar.png';
                 
                 // 5. Simula o clique para iniciar o download
+                document.body.appendChild(link);
                 link.click();
+                document.body.removeChild(link);
             }).finally(() => {
                 // 6. Torna o botão visível novamente
                 downloadButton.style.display = 'block';
             });
         }
+        
+        // Listener de evento para o botão (melhor prática que o onclick no HTML)
+        document.getElementById('download-button').addEventListener('click', capturarEBaixar);
     </script>
 
 </body>
