@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardápio Gastrobar</title>
+    <title>Cardápio Gastrobar - Dark Mode Otimizado</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
         /* Variáveis de Cores */
         :root {
-            --cor-brasa: #8b0000; /* Vermelho escuro, quase vinho */
-            --cor-fundo: #f0f0f0;
-            --cor-carne: #4a2828; /* Marrom escuro */
-            --cor-preco: #008000; /* Verde para destaque financeiro */
-            --cor-destaque: #ffd700; /* Amarelo/Dourado */
+            --cor-brasa: #ff4500; /* Vermelho/Laranja mais vivo para o Dark Mode */
+            --cor-fundo-escuro: #121212; /* Fundo bem escuro */
+            --cor-container: #1e1e1e; /* Fundo do container ligeiramente mais claro */
+            --cor-texto: #f5f5f5; /* Texto claro */
+            --cor-carne: #a52a2a; /* Marrom avermelhado escuro para detalhes */
+            --cor-destaque: #ffd700; /* Amarelo/Dourado (Mantido) */
+            --cor-borda-item: #333; /* Borda sutil */
         }
 
-        /* Estilos básicos */
+        /* Estilos básicos - Dark Mode */
         body {
-            font-family: Arial, sans-serif; /* Use 'Roboto', 'Bebas Neue' ou outra se usar link acima */
-            background-color: var(--cor-fundo);
-            color: #333;
+            font-family: Arial, sans-serif;
+            background-color: var(--cor-fundo-escuro);
+            color: var(--cor-texto);
             margin: 0;
             padding: 0;
             line-height: 1.6;
@@ -29,47 +32,91 @@
             max-width: 1000px;
             margin: 40px auto;
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 5px solid var(--cor-carne);
+            background-color: var(--cor-container);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 5px solid var(--cor-brasa);
             border-radius: 8px;
         }
 
+        /* Botão de Download (Novo Estilo) */
+        .download-btn {
+            display: block;
+            width: 250px;
+            margin: 20px auto 40px auto;
+            padding: 15px 20px;
+            background-color: var(--cor-destaque);
+            color: #000;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .download-btn:hover {
+            background-color: #e0b400;
+            transform: translateY(-2px);
+        }
+        
         /* Cabeçalho */
         header {
-            text-align: center;
-            padding-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
             margin-bottom: 35px;
             border-bottom: 5px double var(--cor-brasa);
         }
 
+        .header-titles {
+            text-align: left;
+            flex-grow: 1;
+        }
+        
         header h1 {
             color: var(--cor-brasa);
             margin: 0;
-            font-size: 3em;
+            font-size: 2.8em;
             text-transform: uppercase;
             letter-spacing: 3px;
+            text-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
         }
 
         header h2 {
-            color: var(--cor-carne);
+            color: var(--cor-texto);
             margin: 5px 0 0;
-            font-size: 1.4em;
+            font-size: 1.2em;
         }
-
-        /* Seção de Menu (Grid em telas maiores) */
-        .menu {
-            display: grid;
-            grid-template-columns: 1fr; /* Padrão 1 coluna */
-            gap: 20px; /* Espaço entre os itens */
+        
+        /* Placeholder da Logo */
+        .logo-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--cor-destaque);
+            margin-left: 20px;
+            flex-shrink: 0;
+            background-color: #333;
+            background-image: url('https://via.placeholder.com/100x100?text=LOGO'); 
+            background-size: cover;
+            background-position: center;
         }
 
         /* Item do Cardápio */
+        .menu {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
         .menu-item {
             display: flex;
             align-items: center;
-            background-color: #fcfcfc;
-            border: 1px solid #ddd;
+            background-color: var(--cor-container);
+            border: 1px solid var(--cor-borda-item);
             border-left: 5px solid var(--cor-brasa);
             padding: 15px;
             border-radius: 5px;
@@ -78,79 +125,82 @@
 
         .menu-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 10px rgba(255, 69, 0, 0.2);
+            background-color: #2a2a2a;
         }
 
         .item-image {
             width: 90px;
             height: 90px;
             object-fit: cover;
-            border-radius: 50%; /* Imagem redonda para destacar */
+            border-radius: 50%;
             margin-right: 15px;
             border: 3px solid var(--cor-destaque);
             flex-shrink: 0;
         }
 
-        .item-details {
-            flex-grow: 1;
-        }
-
+        .item-details { flex-grow: 1; }
         .item-details h3 {
-            color: var(--cor-carne);
+            color: var(--cor-destaque);
             margin: 0 0 5px;
             font-size: 1.4em;
             text-transform: uppercase;
         }
-
         .item-details p {
             margin: 0;
-            color: #666;
+            color: #ccc;
             font-size: 0.9em;
         }
 
         .item-price {
             font-size: 1.5em;
             font-weight: bold;
-            color: #fff;
+            color: var(--cor-texto);
             background-color: var(--cor-brasa);
             padding: 5px 12px;
             border-radius: 4px;
             margin-left: 20px;
             flex-shrink: 0;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
         }
         
-        /* Destaque para Combos/Promoções */
         .combo-title h3 {
-             color: var(--cor-destaque);
-             background-color: var(--cor-brasa);
-             padding: 10px;
-             text-align: center;
-             border-radius: 5px;
-             margin: 20px 0 10px 0;
-             font-size: 1.6em;
+            color: var(--cor-destaque);
+            background-color: var(--cor-brasa);
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 20px 0 10px 0;
+            font-size: 1.6em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
         }
 
-        /* Seção de Informações */
+        /* Seção de Informações (Rodapé) - Fonte maior e mais visível */
         .info-section {
             margin-top: 40px;
             padding-top: 20px;
             border-top: 3px solid var(--cor-brasa);
             text-align: center;
-            font-size: 0.9em;
-            color: var(--cor-carne);
+            font-size: 1.1em;
+            color: var(--cor-texto);
         }
 
         .info-section strong {
-            color: var(--cor-brasa);
+            color: var(--cor-destaque);
+            font-size: 1.3em;
+            display: block;
+            margin: 5px 0;
         }
+        .info-section p {
+            margin: 5px 0;
+        }
+
 
         /* Responsividade (Telas médias e grandes) */
         @media (min-width: 768px) {
             .menu {
-                grid-template-columns: 1fr 1fr; /* 2 colunas em tablets e desktops */
+                grid-template-columns: 1fr 1fr;
             }
-            /* Garantindo que o item ocupe a coluna inteira para a divisão de combos */
             .combo-title {
                 grid-column: 1 / -1; 
                 margin: 0;
@@ -164,50 +214,108 @@
                 margin: 20px 10px;
                 padding: 15px;
             }
-            header h1 {
-                font-size: 2em;
-            }
-            
-            .menu-item {
-                flex-direction: column; /* Empilha o conteúdo */
+            header {
+                flex-direction: column;
                 text-align: center;
             }
-
+            .header-titles {
+                text-align: center;
+            }
+            .logo-placeholder {
+                order: -1;
+                margin: 0 0 15px 0;
+            }
+            header h1 { font-size: 2em; }
+            .menu-item {
+                flex-direction: column;
+                text-align: center;
+            }
             .item-image {
                 margin: 0 0 10px 0;
             }
-
             .item-details {
                 margin-bottom: 10px;
             }
+            .item-details h3 { font-size: 1.2em; }
+            .item-price { font-size: 1.3em; }
+            .info-section strong { font-size: 1.1em; }
+            .download-btn { width: 90%; }
+        }
 
-            .item-details h3 {
-                font-size: 1.2em;
+
+        /* OTIMIZAÇÃO PARA IMPRESSÃO (PDF) */
+        @media print {
+            .download-btn {
+                display: none; /* Oculta o botão de download na impressão */
+            }
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
             }
 
+            .container {
+                box-shadow: none;
+                border: 3px solid #000;
+                max-width: 90%;
+                margin: 0.5cm auto;
+                padding: 15px;
+                background-color: #ffffff !important;
+            }
+            
+            header h1, .item-details h3, .info-section strong {
+                color: #555 !important;
+                text-shadow: none !important;
+            }
+
+            .menu-item {
+                border: 1px solid #ccc;
+                border-left: 5px solid #000;
+                background-color: #f9f9f9 !important;
+                box-shadow: none;
+                transition: none;
+            }
+            .menu-item:hover { transform: none; box-shadow: none; }
+
             .item-price {
-                font-size: 1.3em;
+                background-color: #ddd !important;
+                color: #000 !important;
+                text-shadow: none !important;
+            }
+
+            .combo-title h3 {
+                background-color: #ccc !important;
+                color: #000 !important;
+                text-shadow: none !important;
+                border: 1px solid #000;
+            }
+
+            .info-section {
+                border-top: 3px solid #000;
+                color: #000;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" id="menu-container">
         
         <header>
-            <h1>Cardápio Gastrobar</h1>
-            <h2>Restaurante das 09:00 às 17:00</h2>
+            <div class="header-titles">
+                <h1>Cardápio Gastrobar</h1>
+                <h2>Restaurante das 09:00 às 17:00</h2>
+            </div>
+            
+            <div class="logo-placeholder" title="Insira sua Logo aqui"></div>
         </header>
 
         <section class="menu">
-
 
             
             <div class="combo-title">
                 <h3>PRATOS DO DIA</h3>
             </div>
-                       
+                        
             <div class="menu-item">
                 <img src="https://claudia.abril.com.br/wp-content/uploads/2020/02/receita-dobradinha-com-fava-verde.jpg?quality=70&strip=info" alt="Dobradinha" class="item-image">
                 <div class="item-details">
@@ -221,7 +329,7 @@
             <div class="combo-title">
                 <h3>PRATOS EXECUTIVOS</h3>
             </div>
-           
+            
 
             <div class="menu-item">
                 <img src="https://www.ajinomotofoodservice.com.br/wp/content/uploads/receitas/bife-a-cavalo-1920x1080-20-05-2021-ttyat.jpg" alt="Bife a Cavalo" class="item-image">
@@ -321,8 +429,8 @@
                 </div>
                 <div class="item-price">R$22,00</div>
             </div>
-                       
-                                   
+                        
+                        
             <div class="menu-item">
                 <img src="https://static.itdg.com.br/images/640-440/73e6dec9467a2a9c06d6226f807c41cb/file-de-peixe-assado-1-.jpg" alt="Filé de Dourada" class="item-image">
                 <div class="item-details">
@@ -360,11 +468,49 @@
         <footer class="info-section">
             <p><strong>DELIVERY E NO ESPAÇO FÍSICO</strong></p>
             <p>AVENIDA JOSÉ BONIFÁCIO Nº: 1980</p>
-            <p>Contato (WhatsApp e Delivery): <strong>(91) 7400-1524</strong></p>
+            <p>Contato (WhatsApp e Delivery):</p>
+            <strong>(91) 7400-1524</strong>
             <p style="margin-top: 15px;">Obrigado PELA PREFERÊNCIA!</p>
         </footer>
 
     </div>
+    
+    <button class="download-btn" onclick="capturarEBaixar()">
+        Download ⬇️
+    </button>
+
+    <script>
+        /**
+         * Captura o elemento principal do cardápio e baixa como imagem PNG.
+         */
+        function capturarEBaixar() {
+            const container = document.getElementById('menu-container');
+            const downloadButton = document.querySelector('.download-btn');
+
+            // 1. Oculta o botão de download para que ele não apareça na imagem
+            downloadButton.style.display = 'none';
+
+            // 2. Usa o html2canvas para capturar o elemento
+            html2canvas(container, {
+                scale: 2, // Aumenta a escala para melhorar a qualidade da imagem para o Instagram
+                backgroundColor: '#121212', // Garante que o fundo escuro seja renderizado
+            }).then(canvas => {
+                // 3. Converte o canvas para uma imagem PNG
+                const image = canvas.toDataURL("image/png");
+
+                // 4. Cria um link temporário para download
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = 'cardapio-gastrobar.png';
+                
+                // 5. Simula o clique para iniciar o download
+                link.click();
+            }).finally(() => {
+                // 6. Torna o botão visível novamente
+                downloadButton.style.display = 'block';
+            });
+        }
+    </script>
 
 </body>
 </html>
